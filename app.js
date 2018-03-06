@@ -12,7 +12,14 @@ let index = require('./routes/index');
 let app = express();
 
 //connect to the data store
-mongoose.connect('localhost:27017/shopping');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/shopping', function(error, db) {
+    if(!error) {
+        console.log("We are connected");
+    } else {
+        console.log(error);
+    }
+});
 
 // view engine setup
 
