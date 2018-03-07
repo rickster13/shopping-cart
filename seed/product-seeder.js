@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/shopping', function(error, db) {
 
 let products = [
     new Product({
-        imagePath: 'https://upload.wikimedia.org/wikipedia/en/3/3d/PlayerUnknown%27s_Battlegrounds_Steam_Logo.jpg',
+        imagePath: '/images/PubG_Logo.jpg',
         title: 'Player\'s Unknown Battlegrounds',
         description: 'First-Person Shooter',
         price: 60
@@ -25,25 +25,25 @@ let products = [
         price: 20
     }),
     new Product({
-        imagePath: 'https://en.wikipedia.org/wiki/World_of_Warcraft#/media/File:WoW_Box_Art1.jpg',
+        imagePath: '/images/WoW.jpg',
         title: 'World of Warcraft',
         description: 'Multi-player Online',
         price: 10
     }),
     new Product({
-        imagePath: 'https://en.wikipedia.org/wiki/Call_of_Duty:_Black_Ops_III#/media/File:Black_Ops_3.jpg',
+        imagePath: '/images/Black_Ops_3.jpg',
         title: 'Call of Duty - Black Ops III',
         description: 'First-Person Shooter',
         price: 45
     }),
     new Product({
-        imagePath: 'https://en.wikipedia.org/wiki/Fortnite#/media/File:Fortnite_logo.jpg',
+        imagePath: '/images/Fortnite_logo.jpg',
         title: 'Fortnite',
         description: 'First-Person Shooter',
         price: 30
     }),
     new Product({
-        imagePath: 'https://en.wikipedia.org/wiki/Cities:_Skylines#/media/File:Cities_Skylines_cover_art.jpg',
+        imagePath: '/images/Cities_Skylines.jpg',
         title: 'City Skylines',
         description: 'Simulation',
         price: 9.99
