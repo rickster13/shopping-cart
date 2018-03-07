@@ -53,7 +53,7 @@ let products = [
 //check counter for how many items have been saved
 let done = 0;
 
-//saving all the items in product collection
+//saving all the items in product collection before moving forward
 for ( let i = 0; i < products.length; i++) {
     products[i].save(function(err, result) {
         done++;
