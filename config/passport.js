@@ -31,14 +31,16 @@ passport.use('local.signup', new LocalStrategy({
                     newUser.email = email;
                     newUser.password = newUser.encryptPassword(password);
 
-                    return newUser.save()
-                        .then(function() {
-                            done(null, newUser);
-                        });
+                    console.log(newUser);
+
+                    return newUser.save(function() {
+                        console.log("Saved");
+                        done(null, user);
+                    });
                 }
             })
-            .catch(function(err) {
-                done(err);
+            .then(function(user) {
+                done(null, user);
             });
     }
 ));
