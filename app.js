@@ -16,13 +16,13 @@ let app = express();
 
 //connect to the data store
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/shopping', function(error, db) {
-    if(!error) {
-        console.log("We are connected");
-    } else {
-        console.log(error);
-    }
+mongoose.connect('mongodb://localhost:27017/shopping')
+    .then(function(db) {
+        console.log("Connected to DB");
+    }).catch(function(err) {
+        console.log(err);
 });
+
 require('./config/passport');
 
 // view engine setup
