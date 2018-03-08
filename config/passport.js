@@ -14,33 +14,27 @@ passport.deserializeUser(function(id, done) {
 });
 
     // Creation of an user
-passport.use('local.signup', new LocalStrategy({
+passport.use('local', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
     },
-    function(req, email, password, done){
-        User.findOne({'email': email}).exec()
-            .then(function(user) {
-                if(user){
-                    return done(null, false, {message: 'Email is already in use'});
+    function(req, email, password, done) {
+        User.findOne({'email': email})
+            .exec()
+            .then(existingUser => {
+                if (existingUser) {
+                    return Promise.resolve(done(null, false, { message: 'Email is already in use' }));
+                } else {
+                    const user = new User();
+                    user.email = email;
+                    return user.encryptPassword(password)
+                        .then(encryptedPass => {
+                            user.password = encryptedPass;
+                            return user;
+                        })
+                        .then(user => user.save())
+                        .then(user => done(null, user));
                 }
-                else{
-                    let newUser = new User();
-
-                    newUser.email = email;
-                    newUser.password = newUser.encryptPassword(password);
-
-                    console.log(newUser);
-
-                    return newUser.save(function() {
-                        console.log("Saved");
-                        done(null, user);
-                    });
-                }
-            })
-            .then(function(user) {
-                done(null, user);
-            });
-    }
-));
+            }).catch(done);
+    }));
